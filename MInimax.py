@@ -7,6 +7,10 @@ ai = 'X'
 human = 'O'
 currentPlayer = human
 
+# Counters for minimax checks
+total_checks = 0
+current_checks = 0
+
 def print_board():
     print("\nCurrent Board:")
     for row in board:
@@ -50,6 +54,10 @@ def available_moves():
     return moves
 
 def minimax(new_board, depth, is_maximizing):
+    global current_checks, total_checks
+    current_checks += 1
+    total_checks += 1
+
     result = check_winner()
     if result is not None:
         if result == ai:
@@ -77,8 +85,10 @@ def minimax(new_board, depth, is_maximizing):
         return best_score
 
 def best_move():
+    global current_checks
     best_score = -float('inf')
     move = None
+    current_checks = 0  # Reset for this move
     for (i, j) in available_moves():
         board[i][j] = ai
         score = minimax(board, 0, False)
@@ -90,8 +100,10 @@ def best_move():
         i, j = move
         board[i][j] = ai
 
+    print(f"AI evaluated {current_checks} positions for its move.")
+
 def main():
-    global currentPlayer
+    global currentPlayer, total_checks
 
     print("Welcome to Tic Tac Toe!")
     print_board()
@@ -103,6 +115,7 @@ def main():
                 print("It's a tie!")
             else:
                 print(f"{winner} wins!")
+            print(f"Total minimax evaluations during the game: {total_checks}")
             break
 
         if currentPlayer == human:
