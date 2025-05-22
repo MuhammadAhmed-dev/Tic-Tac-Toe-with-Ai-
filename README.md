@@ -50,3 +50,9 @@ Alpha-Beta Pruning significantly reduces the number of nodes evaluated, improvin
 - Add adjustable difficulty levels.
 - Create a GUI using Pygame or Tkinter.
 - Extend the game to larger grids, e.g., 4x4 Tic-Tac-Toe or Connect-4 style.
+
+---
+
+## Video Link🔗
+
+https://www.youtube.com/watch?v=iVSdKNcXpHs&ab_channel=ZohaibKhan
